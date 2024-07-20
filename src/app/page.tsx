@@ -1,7 +1,11 @@
-import SpendingLineChart from "@/components/SpendingLineChart";
-import PageLayout from "@/components/designsystem/PageLayout";
+"use client";
+
+import SpendingLineChart from "@/components/designsystem/SpendingLineChart";
+import PageLayout from "@/components/PageLayout";
 import { TransactionTable } from "@/components/designsystem/TransactionTable";
-import { capOneSpending } from "@/scripts/capone";
+import { capOneSpending } from "@/scripts/archive/capone";
+import { useEffect } from "react";
+import { parseFile } from "@/scripts/papaparse";
 
 const stockData = [
   {
@@ -1017,6 +1021,9 @@ const stockData = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    parseFile("/csvs/chase-example.csv", "chase");
+  }, []);
   return (
     <div style={{ width: "1200px", height: "500px" }}>
       <SpendingLineChart data={stockData} />

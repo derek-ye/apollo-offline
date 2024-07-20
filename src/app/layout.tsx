@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import "./globals.css";
-import PageLayout from "@/components/designsystem/PageLayout";
+import PageLayout from "@/components/PageLayout";
 import { Inter as FontSans } from "next/font/google";
 
 const fontSans = FontSans({
