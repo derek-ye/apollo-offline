@@ -8,6 +8,7 @@
 /** @type {Transaction} */
 
 export interface ApolloTransaction {
+    id?: number
     transactionDate: string
     amount: string
     description: string

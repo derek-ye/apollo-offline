@@ -23,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="">
       <body
-        className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
+        className={cn(
+          "min-h-screen font-sans antialiased m-4",
+          fontSans.variable
+        )}
       >
         <Navbar></Navbar>
         <PageLayout>{children}</PageLayout>

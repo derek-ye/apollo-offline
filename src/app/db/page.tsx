@@ -1,5 +1,8 @@
 "use client";
+import { TransactionTable } from "@/components/designsystem/tables/TransactionTable";
+import { Button } from "@/components/ui/button";
 import { ApolloTransaction } from "@/types/Transaction";
+import { clear } from "console";
 import React, { useState, useEffect } from "react";
 
 const TransactionListPage: React.FC = () => {
@@ -28,6 +31,9 @@ const TransactionListPage: React.FC = () => {
       setIsLoading(false);
     }
   };
+  const clearTransactions = async () => {
+    fetch("/api/reset-database");
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -40,29 +46,15 @@ const TransactionListPage: React.FC = () => {
   return (
     <div>
       <h1>Transaction List</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Amount</th>
-            <th>Type</th>
-            <th>Category</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((transaction, index) => (
-            <tr key={index}>
-              <td>{transaction.transactionDate}</td>
-              <td>{transaction.description}</td>
-              <td>${transaction.amount.toFixed(2)}</td>
-              <td>{transaction.isPayment ? "Payment" : "Charge"}</td>
-              <td>{transaction.category || "N/A"}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button onClick={fetchTransactions}>Refresh Transactions</button>
+      <div>
+        <Button onClick={fetchTransactions} variant="outline">
+          Refresh Transactions
+        </Button>
+        <Button onClick={clearTransactions} variant="outline">
+          Clear DB
+        </Button>
+      </div>
+      <TransactionTable transactions={transactions}></TransactionTable>
     </div>
   );
 };

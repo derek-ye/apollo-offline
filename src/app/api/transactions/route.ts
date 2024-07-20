@@ -30,11 +30,11 @@ export async function GET(req: Request, res: Response) {
       }
      );
     }
-   }
+}
 
 export async function POST(req: Request, res: Response) {
-    console.log(req.json())
  const body = await req.json();
+ console.log(body)
  const { transactionDate,
     amount,
     description,

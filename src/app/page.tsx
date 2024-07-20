@@ -1,9 +1,7 @@
 "use client";
 
 import SpendingLineChart from "@/components/designsystem/charts/SpendingLineChart";
-import PageLayout from "@/components/PageLayout";
-import { TransactionTable } from "@/components/designsystem/tables/TransactionTable";
-import { capOneSpending } from "@/scripts/archive/capone";
+import { TransactionTable } from "@/components/designsystem/tables/TransactionTableOld";
 import { useEffect } from "react";
 import { parseFile } from "@/lib/parse/papaparse";
 
