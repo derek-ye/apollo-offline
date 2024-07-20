@@ -1,11 +1,11 @@
 "use client";
 
-import SpendingLineChart from "@/components/designsystem/SpendingLineChart";
+import SpendingLineChart from "@/components/designsystem/charts/SpendingLineChart";
 import PageLayout from "@/components/PageLayout";
-import { TransactionTable } from "@/components/designsystem/TransactionTable";
+import { TransactionTable } from "@/components/designsystem/tables/TransactionTable";
 import { capOneSpending } from "@/scripts/archive/capone";
 import { useEffect } from "react";
-import { parseFile } from "@/scripts/papaparse";
+import { parseFile } from "@/lib/parse/papaparse";
 
 const stockData = [
   {

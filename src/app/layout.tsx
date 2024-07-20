@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import PageLayout from "@/components/PageLayout";
 import { Inter as FontSans } from "next/font/google";
+import Navbar from "@/components/designsystem/layout/Navbar";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -20,13 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-black">
+    <html lang="en" className="">
       <body
-        className={cn(
-          "min-h-screen font-sans antialiased bg-black",
-          fontSans.variable
-        )}
+        className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
       >
+        <Navbar></Navbar>
         <PageLayout>{children}</PageLayout>
       </body>
     </html>

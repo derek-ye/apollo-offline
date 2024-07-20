@@ -56,7 +56,7 @@ const invoices = [
 
 export function TransactionTable() {
   return (
-    <Table className="text-neutral-100">
+    <Table className="">
       <TableCaption>A list of your recent transactions.</TableCaption>
       <TableHeader>
         <TableRow className="hover:bg-inherit">
@@ -77,7 +77,7 @@ export function TransactionTable() {
         ))}
       </TableBody>
       <TableFooter>
-        <TableRow className="bg-black hover:bg-black">
+        <TableRow>
           <TableCell colSpan={3}>Total</TableCell>
           <TableCell className="text-right">$2,500.00</TableCell>
         </TableRow>

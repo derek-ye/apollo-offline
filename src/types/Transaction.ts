@@ -7,9 +7,10 @@
 
 /** @type {Transaction} */
 
-interface ApolloTransaction {
+export interface ApolloTransaction {
     transactionDate: string
-    amount: number
+    amount: string
+    description: string
     isPayment?: boolean
     category?: string
 }
@@ -33,7 +34,7 @@ export interface CitiTransaction extends IBankTransaction {
     areAmountsNegative: false
 }
 
-interface WfTransaction extends IBankTransaction {
+export interface WfTransaction extends IBankTransaction {
     // note: does not have a header
     date: string
     amount: string
@@ -43,7 +44,7 @@ interface WfTransaction extends IBankTransaction {
     areAmountsNegative: true
 }
 
-interface ChaseTransaction extends IBankTransaction {
+export interface ChaseTransaction extends IBankTransaction {
     transactionDate: string
     postDate: string
     description: string

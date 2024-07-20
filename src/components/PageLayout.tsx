@@ -4,7 +4,7 @@ type IPageLayoutProps = {
 };
 export default function PageLayout(props: IPageLayoutProps) {
   return (
-    <div className="flex justify-center bg-black">
+    <div className="flex justify-center">
       <div>{props.children}</div>
     </div>
   );
