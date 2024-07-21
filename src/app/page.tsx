@@ -1,9 +1,7 @@
 "use client";
 
-import SpendingLineChart from "@/components/designsystem/charts/SpendingLineChart";
-import { TransactionTable } from "@/components/designsystem/tables/TransactionTableOld";
-import { useEffect } from "react";
-import { parseFile } from "@/lib/parse/papaparse";
+import SpendingLineChart from "@/components/custom/charts/SpendingLineChart";
+import TransactionListCard from "@/components/custom/cards/TransactionListCard";
 
 const stockData = [
   {
@@ -1019,13 +1017,14 @@ const stockData = [
 ];
 
 export default function Home() {
-  useEffect(() => {
-    parseFile("/csvs/chase-example.csv", "chase");
-  }, []);
   return (
     <div style={{ width: "1200px", height: "500px" }}>
       <SpendingLineChart data={stockData} />
-      <TransactionTable></TransactionTable>
+      <div className="flex w-1/2">
+        {/* <TransactionListCard></TransactionListCard> */}
+      </div>
+
+      {/* <TransactionTable></TransactionTable> */}
     </div>
   );
 }

@@ -15,7 +15,6 @@ export function TransactionTable({
 }: {
   transactions: ApolloTransaction[];
 }) {
-  console.log(transactions);
   return (
     <Table>
       <TableCaption>A list of your recent transactions.</TableCaption>
@@ -23,8 +22,8 @@ export function TransactionTable({
         <TableRow className="hover:bg-inherit">
           <TableHead className="max-w-[240px]">Transaction Date</TableHead>
           <TableHead>Description</TableHead>
-          <TableHead>Amount</TableHead>
-          <TableHead className="text-right">Is Payment</TableHead>
+          {/* <TableHead>Is Payment</TableHead> */}
+          <TableHead className="text-right">Amount</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -32,6 +31,9 @@ export function TransactionTable({
           <TableRow key={t.id} className="hover:bg-neutral-100">
             <TableCell className="font-medium">{t.transactionDate}</TableCell>
             <TableCell>{t.description}</TableCell>
+            {/* <TableCell className="text-center">
+              {t.isPayment ? "✅" : "❌"}
+            </TableCell> */}
             <TableCell
               className={
                 "text-right " +
@@ -40,20 +42,16 @@ export function TransactionTable({
             >
               {t.amount}
             </TableCell>
-            <TableCell className="text-center">
-              {t.isPayment ? "✅" : "❌"}
-            </TableCell>
           </TableRow>
         ))}
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
+          <TableCell colSpan={2}>Total</TableCell>
           <TableCell className="text-right">
-            {transactions.reduce(
-              (accumulator, t) => accumulator + Number(t.amount),
-              0
-            )}
+            {transactions
+              .reduce((accumulator, t) => accumulator + Number(t.amount), 0)
+              .toFixed(2)}
           </TableCell>
         </TableRow>
       </TableFooter>

@@ -21,5 +21,21 @@ export const migrate = () => {
      console.log("Transactions table created successfully.");
     }
    );
+   db.run(
+    `
+    CREATE TABLE IF NOT EXISTS categorized_descriptions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      description TEXT NOT NULL,
+      category TEXT NOT NULL
+    );
+    `,
+    (err: Error) => {
+     if (err) {
+      console.error(err.message);
+      throw err.message
+     }
+     console.log("Transactions table created successfully.");
+    }
+   );
   });
 }

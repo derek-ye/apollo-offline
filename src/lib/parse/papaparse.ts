@@ -2,7 +2,7 @@ import { SupportedBanks } from '@/types/Transaction';
 import Papa from 'papaparse';
 import { bankFormatArrayToObject, toStandardizedFormat } from './utils';
 
-export const parseFile = (url: string, bankType: SupportedBanks) => {
+export const parseAndLoadFile = (url: string, bankType: SupportedBanks) => {
     const header = bankType === 'wf' ? true : false
     return Papa.parse(url, {
         header,
@@ -12,17 +12,18 @@ export const parseFile = (url: string, bankType: SupportedBanks) => {
             // add to database
             const unstandardizedTrans = bankFormatArrayToObject(row.data, bankType)
             if (unstandardizedTrans) {
-                console.log(unstandardizedTrans)
-                console.log(toStandardizedFormat(unstandardizedTrans))
-                fetch('/api/transactions', {
-                    method: 'POST',
-                    headers: {
-                    'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(toStandardizedFormat(unstandardizedTrans))
-                })
+                const standardTransaction = toStandardizedFormat(unstandardizedTrans)
+                // the following line is purely for getting rid of the header function. maybe find a better way to do this
+                if (standardTransaction?.amount && Number(standardTransaction.amount) >= 0) {
+                    fetch('/api/transactions', {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(standardTransaction)
+                    })
+                }
             }
-            
         },
         complete: function() {
             console.log("All done!");

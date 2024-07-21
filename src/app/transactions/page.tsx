@@ -1,5 +1,5 @@
 "use client";
-import { TransactionTable } from "@/components/designsystem/tables/TransactionTable";
+import { TransactionTable } from "@/components/custom/tables/TransactionTable";
 import { Button } from "@/components/ui/button";
 import { ApolloTransaction } from "@/types/Transaction";
 import { clear } from "console";
@@ -45,12 +45,12 @@ const TransactionListPage: React.FC = () => {
 
   return (
     <div>
-      <h1>Transaction List</h1>
-      <div>
+      <h1 className="mt-4 mb-8 text-2xl font-medium">Transaction List</h1>
+      <div className="space-x-4 mb-4">
         <Button onClick={fetchTransactions} variant="outline">
           Refresh Transactions
         </Button>
-        <Button onClick={clearTransactions} variant="outline">
+        <Button onClick={clearTransactions} variant="destructive">
           Clear DB
         </Button>
       </div>

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import "./globals.css";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/custom/PageLayout";
 import { Inter as FontSans } from "next/font/google";
-import Navbar from "@/components/designsystem/layout/Navbar";
+import Sidebar from "@/components/custom/layout/Sidebar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -28,8 +29,9 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Navbar></Navbar>
-        <PageLayout>{children}</PageLayout>
+        <TooltipProvider>
+          <PageLayout>{children}</PageLayout>
+        </TooltipProvider>
       </body>
     </html>
   );
