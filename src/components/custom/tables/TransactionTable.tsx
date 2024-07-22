@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ApolloTransaction } from "@/types/Transaction";
+import CategoryDropdown from "./TransactionTableCategoryDropdown";
 
 export function TransactionTable({
   transactions,
@@ -23,6 +24,7 @@ export function TransactionTable({
           <TableHead className="max-w-[240px]">Transaction Date</TableHead>
           <TableHead>Description</TableHead>
           {/* <TableHead>Is Payment</TableHead> */}
+          <TableHead>Category</TableHead>
           <TableHead className="text-right">Amount</TableHead>
         </TableRow>
       </TableHeader>
@@ -34,6 +36,9 @@ export function TransactionTable({
             {/* <TableCell className="text-center">
               {t.isPayment ? "✅" : "❌"}
             </TableCell> */}
+            <TableCell>
+              <CategoryDropdown description={t.description}></CategoryDropdown>
+            </TableCell>
             <TableCell
               className={
                 "text-right " +

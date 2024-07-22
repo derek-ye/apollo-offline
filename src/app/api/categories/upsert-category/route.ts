@@ -8,9 +8,9 @@ export async function POST(req: Request, res: Response) {
        category } = body;
    
     const query = `
-       UPSERT INTO categorized_descriptions(
+       INSERT OR REPLACE INTO categorized_descriptions(
             description,
-            category
+            category)
        VALUES(?, ?)
      `;
     const values = [
