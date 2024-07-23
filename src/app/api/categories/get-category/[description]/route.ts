@@ -1,7 +1,7 @@
 import { apiGet } from "../../../migrate/database";
 
 export async function GET(req: Request, { params }: { params: { description: string } }) {
-  const description = params.description
+  const description = decodeURI(params.description)
     const query = `
        SELECT * from categorized_descriptions WHERE description='${description}'
      `;

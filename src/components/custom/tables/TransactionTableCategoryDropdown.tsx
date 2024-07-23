@@ -18,7 +18,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { writeCategoryForDescription } from "@/lib/categories";
+import {
+  getCategoryForDescription,
+  writeCategoryForDescription,
+} from "@/lib/categories";
 
 const categories = [
   {
@@ -52,14 +55,24 @@ export default function CategoryDropdown({
   const [value, setValue] = React.useState("");
 
   const onSelect = (currentValue: any) => {
-    if (currentValue === value) {
-      setValue("");
-    } else {
+    console.log(currentValue);
+    if (currentValue !== value && currentValue !== "") {
+      // only change state and make api call if value changes
       setValue(currentValue);
-      writeCategoryForDescription(description, value);
+      writeCategoryForDescription(description, currentValue);
     }
     setOpen(false);
   };
+
+  React.useEffect(() => {
+    const getCategory = async () => {
+      const cachedCategory = await getCategoryForDescription(description);
+      if (cachedCategory.length > 0) {
+        setValue(cachedCategory[0].category);
+      }
+    };
+    getCategory();
+  }, [description]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

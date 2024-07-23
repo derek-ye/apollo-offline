@@ -6,16 +6,19 @@ export async function POST(req: Request, res: Response) {
     const {
        description,
        category } = body;
-   
+   console.log(description)
     const query = `
-       INSERT OR REPLACE INTO categorized_descriptions(
+       INSERT INTO categorized_descriptions(
             description,
             category)
        VALUES(?, ?)
+       ON CONFLICT(description) DO UPDATE SET category=?
      `;
     const values = [
        description,
-       category];
+       category,
+       category
+    ];
    
     let status, respBody;
     await apiPost(query, values)

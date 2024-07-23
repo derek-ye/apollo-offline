@@ -25,7 +25,7 @@ export const migrate = () => {
     `
     CREATE TABLE IF NOT EXISTS categorized_descriptions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      description TEXT NOT NULL,
+      description TEXT NOT NULL UNIQUE,
       category TEXT NOT NULL
     );
     `,
